@@ -1,32 +1,36 @@
-/*
 // objeto producto
 class Producto {
-    constructor(nombre, sabor, unidades, precio) {
+    constructor(nombre, precio) {
         this.nombre = nombre;
-        this.sabor = sabor;
-        this.unidades = unidades;
         this.precio = precio;
     }
 }
 
-nombres = ["empanadas", "bifes", "milanesas", "muzzarella"];
-sabores = ["jamon y queso", "carne vegetal", "seitan", "mani"];
-unidades = [1, 2, 3, 6, 12];
 
 const productos = [
-    { id: 1, nombre: "Empanadas", de: "jamon y queso", unidades: 3, precio: 270 },
-    { id: 3, nombre: "Empanadas", de: "jamon y queso", unidades: 12, precio: 880 },
-    { id: 4, nombre: "Empanadas", de: "carne vegetal", unidades: 3, precio: 270 },
-    { id: 2, nombre: "Empanadas", de: "carne vegetal", unidades: 12, precio: 880 },
-    { id: 5, nombre: "Muzarella", de: "mani", unidades: 500, precio: 360 },
-    { id: 6, nombre: "Muzarella", de: "mani", unidades: 1, precio: 580 },
-    { id: 7, nombre: "Bifes", de: "seitan", unidades: 2, precio: 320 },
-    { id: 8, nombre: "Bifes", de: "seitan", unidades: 6, precio: 760 },
-    { id: 9, nombre: "Milanesas", de: "seitan", unidades: 2, precio: 350 },
-    { id: 10, nombre: "Milanesas", de: "seitan", unidades: 6, precio: 870 },
+    { id: 1, nombre: "Empanadas de jamon y queso x 3 Unidades", precio: 270 },
+    { id: 2, nombre: "Empanadas de jamon y queso x 12 Unidades", precio: 880 },
+    { id: 3, nombre: "Empanadas de carne vegetal x 3 Unidades", precio: 270 },
+    { id: 4, nombre: "Empanadas de carne vegetal x 12 Unidades", precio: 880 },
+    { id: 5, nombre: "Muzarella de mani x 500 Gr", precio: 360 },
+    { id: 6, nombre: "Muzarella de mani x 1 Kr", precio: 580 },
+    { id: 7, nombre: "Bifes de seitan x 2 unidades", precio: 320 },
+    { id: 8, nombre: "Bifes de seitan x 6 unidades", precio: 760 },
+    { id: 9, nombre: "Milanesas de seitan x 2 unidades", precio: 350 },
+    { id: 10, nombre: "Milanesas de seitan x 6 unidades", precio: 870 },
     
 ];
-*/
+for (let i = 0; i < productos.length; i++){
+  let miItem = document.getElementsByClassName('item')[i];
+  miItem.innerHTML = `<h3 class="item-title">${productos[i].nombre}</h3>
+                      <img class="item-image" src="img/${productos[i].id}.jpg">
+                      <div class="item-details">
+                        <h4 class="item-price">$${productos[i].precio}</h4>
+                        <button class="item-button btn btn-primary addToCart">AÑADIR AL CARRITO</button>
+                      </div>`
+}
+
+
 
 const addToShoppingCartButtons = document.querySelectorAll('.addToCart');
 addToShoppingCartButtons.forEach((addToCartButton) => {
