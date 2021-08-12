@@ -132,7 +132,7 @@ function updateShoppingCartTotal() {
     const shoppingCartItemQuantity = Number(
       shoppingCartItemQuantityElement.value
     );
-    total = total + shoppingCartItemPrice * shoppingCartItemQuantity + envio;
+    total = total + shoppingCartItemPrice * shoppingCartItemQuantity;
   });
   shoppingCartTotal.innerHTML = `$${total.toFixed(2)}`;
 }
