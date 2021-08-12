@@ -35,6 +35,18 @@ body{
   margin: 0;
 }
 
+
+.mapa-envios{
+  justify-content: center;
+  margin: 2em auto;
+}
+
+.mapa-envios-img{
+  padding-right: 2em;
+  width: 70%;
+}
+
+
 /* ? SHOPPING CART */
 .shopping-cart{
   background-color: rgba(255, 255, 255, 0.904);

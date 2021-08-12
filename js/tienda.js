@@ -1,11 +1,9 @@
-// objeto producto
-class Producto {
-    constructor(nombre, precio) {
-        this.nombre = nombre;
-        this.precio = precio;
-    }
-}
 
+
+
+
+
+// localStorage.setItem
 
 const productos = [
     { id: 1, nombre: "Empanadas de jamon y queso x 3 Unidades", precio: 270 },
@@ -20,17 +18,22 @@ const productos = [
     { id: 10, nombre: "Milanesas de seitan x 6 unidades", precio: 870 },
     
 ];
-for (let i = 0; i < productos.length; i++){
-  let miItem = document.getElementsByClassName('item')[i];
-  miItem.innerHTML = `<h3 class="item-title">${productos[i].nombre}</h3>
-                      <img class="item-image" src="img/${productos[i].id}.jpg">
-                      <div class="item-details">
-                        <h4 class="item-price">$${productos[i].precio}</h4>
-                        <button class="item-button btn btn-primary addToCart">AÑADIR AL CARRITO</button>
-                      </div>`
+
+
+for (const producto of productos) {
+  $("#items").append(  
+  `<div class="col-12 col-md-6">
+  <div class="item shadow mb-4">
+  <h3 class="item-title">${producto.nombre}</h3>
+  <img class="item-image" src="img/${producto.id}.jpg">
+  <div class="item-details">
+  <h4 class="item-price">$${producto.precio}</h4>
+  <button class="item-button btn btn-primary addToCart">AÑADIR AL CARRITO</button>
+  </div>
+  </div>
+  </div>`
+  );    
 }
-
-
 
 const addToShoppingCartButtons = document.querySelectorAll('.addToCart');
 addToShoppingCartButtons.forEach((addToCartButton) => {
@@ -129,7 +132,7 @@ function updateShoppingCartTotal() {
     const shoppingCartItemQuantity = Number(
       shoppingCartItemQuantityElement.value
     );
-    total = total + shoppingCartItemPrice * shoppingCartItemQuantity;
+    total = total + shoppingCartItemPrice * shoppingCartItemQuantity + envio;
   });
   shoppingCartTotal.innerHTML = `$${total.toFixed(2)}`;
 }
