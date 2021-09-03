@@ -1,23 +1,23 @@
 const productos = [
-    { id: 1, nombre: "Empanadas de jamon y queso <br>x 3 Unidades", precio: 270 },
-    { id: 2, nombre: "Empanadas de jamon y queso <br>x 12 Unidades", precio: 880 },
-    { id: 3, nombre: "Empanadas de carne vegetal <br>x 3 Unidades", precio: 270 },
-    { id: 4, nombre: "Empanadas de carne vegetal <br>x 12 Unidades", precio: 880 },
-    { id: 5, nombre: "Muzarella de mani <br>x 500 Gr", precio: 360 },
-    { id: 6, nombre: "Muzarella de mani <br>x 1 Kg", precio: 580 },
-    { id: 7, nombre: "Bifes de seitan <br>x 2 unidades", precio: 320 },
-    { id: 8, nombre: "Bifes de seitan <br>x 6 unidades", precio: 760 },
-    { id: 9, nombre: "Milanesas de seitan <br>x 2 unidades", precio: 350 },
-    { id: 10, nombre: "Milanesas de seitan <br>x 6 unidades", precio: 870 },
+    { id: 1, nombre: "TOQUES DE GARBANZOS", precio: 370 },
+    { id: 2, nombre: "TOQUES DE LENTEJAS", precio: 370 },
+    { id: 3, nombre: "PIZZA FUGAZZETTA", precio: 800 },
+    { id: 4, nombre: "PIZZA NAPOLITANA", precio: 800 },
+    { id: 5, nombre: "PIZZA PORTOBELLO", precio: 930 },
+    { id: 6, nombre: "MEDALLONES ADUKI REMOLACHA ", precio: 300 },
+    { id: 7, nombre: "MEDALLONES QUINOA MEDITERRANEA", precio: 300 },
+    { id: 8, nombre: "MEDALLONES GREEN MOON", precio: 300 },
+    { id: 9, nombre: "MOUSSE DE CHOCOLATE", precio: 350 },
+    { id: 10, nombre: "VOLCAN DE CHOCOLATE", precio: 350 },
     
 ];
 
 for (const producto of productos) {
   $("#items").append(  
-  `<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+  `<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 card-shopp">
   <div class="item shadow mb-4">
-  <h3 class="item-title">${producto.nombre}</h3>
-  <img class="item-image" src="img/${producto.id}.jpg">
+  <h3 class="item-title">${producto.nombre}</h3>  
+  <div class="divImg"><img class="item-image" src="img/${producto.id}.jpg"></div>
   <div class="item-details">
   <h4 class="item-price">$${producto.precio}</h4>
   <button class="item-button btn btn-primary addToCart">AÑADIR AL CARRITO</button>
