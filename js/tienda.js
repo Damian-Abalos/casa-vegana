@@ -1,28 +1,20 @@
-
-
-
-
-
-// localStorage.setItem
-
 const productos = [
-    { id: 1, nombre: "Empanadas de jamon y queso x 3 Unidades", precio: 270 },
-    { id: 2, nombre: "Empanadas de jamon y queso x 12 Unidades", precio: 880 },
-    { id: 3, nombre: "Empanadas de carne vegetal x 3 Unidades", precio: 270 },
-    { id: 4, nombre: "Empanadas de carne vegetal x 12 Unidades", precio: 880 },
-    { id: 5, nombre: "Muzarella de mani x 500 Gr", precio: 360 },
-    { id: 6, nombre: "Muzarella de mani x 1 Kr", precio: 580 },
-    { id: 7, nombre: "Bifes de seitan x 2 unidades", precio: 320 },
-    { id: 8, nombre: "Bifes de seitan x 6 unidades", precio: 760 },
-    { id: 9, nombre: "Milanesas de seitan x 2 unidades", precio: 350 },
-    { id: 10, nombre: "Milanesas de seitan x 6 unidades", precio: 870 },
+    { id: 1, nombre: "Empanadas de jamon y queso <br>x 3 Unidades", precio: 270 },
+    { id: 2, nombre: "Empanadas de jamon y queso <br>x 12 Unidades", precio: 880 },
+    { id: 3, nombre: "Empanadas de carne vegetal <br>x 3 Unidades", precio: 270 },
+    { id: 4, nombre: "Empanadas de carne vegetal <br>x 12 Unidades", precio: 880 },
+    { id: 5, nombre: "Muzarella de mani <br>x 500 Gr", precio: 360 },
+    { id: 6, nombre: "Muzarella de mani <br>x 1 Kg", precio: 580 },
+    { id: 7, nombre: "Bifes de seitan <br>x 2 unidades", precio: 320 },
+    { id: 8, nombre: "Bifes de seitan <br>x 6 unidades", precio: 760 },
+    { id: 9, nombre: "Milanesas de seitan <br>x 2 unidades", precio: 350 },
+    { id: 10, nombre: "Milanesas de seitan <br>x 6 unidades", precio: 870 },
     
 ];
 
-
 for (const producto of productos) {
   $("#items").append(  
-  `<div class="col-12 col-md-6">
+  `<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
   <div class="item shadow mb-4">
   <h3 class="item-title">${producto.nombre}</h3>
   <img class="item-image" src="img/${producto.id}.jpg">
@@ -33,7 +25,7 @@ for (const producto of productos) {
   </div>
   </div>`
   );    
-}
+};
 
 const addToShoppingCartButtons = document.querySelectorAll('.addToCart');
 addToShoppingCartButtons.forEach((addToCartButton) => {
@@ -153,3 +145,209 @@ function comprarButtonClicked() {
   shoppingCartItemsContainer.innerHTML = '';
   updateShoppingCartTotal();
 }
+
+
+
+
+$("#envio").append(  
+  `<h2 class="animacion">Calcule el valor del envío (solo en capital)</h2>
+  <div id="div1"><img  src="img/mapa-envios.jpg" alt=""></div>
+  <select name="barrios" placeholder="seleccione su barrio" id="ipt1"></select>
+  <button id="btn1">Calcular</button>
+  <button id="btn">Mostrar / Ocultar <br>mapa</button>`
+  );  
+
+  //JSON
+var barriosField = document.querySelector('select[name = barrios]');
+const URLJSON = "barrios.json"
+
+
+$("#ipt1").ready(() => { 
+  $.getJSON(URLJSON, function (respuesta, estado) {
+      if(estado === "success"){
+        let misDatos = respuesta;
+        for (const dato of misDatos) {
+          $("#ipt1").append(`<option>${dato.name}<option>`)
+        }  
+      }
+      });
+  });
+
+$("#ipt1").change((e) => {
+  let barrioIndicado = barriosField.value;
+  function calcularEnvio(costo) {
+    switch (costo) {
+        case "Liniers":
+            return 0;
+            break;
+        case "Versalles":
+            return 100;
+            break;
+        case "Villa Luro":
+            return 100;
+            break;
+        case "Mataderos":
+            return 100;
+            break;
+        case "villa Real":
+            return 150;
+            break;
+        case "Monte Castro":
+            return 150;
+            break;
+        case "Velez Sarfield":
+            return 150;
+            break;
+        case "Floresta":
+            return 150;
+            break;
+        case "Flores":
+            return 150;
+            break;
+        case "Parque Avellaneda":
+            return 150;
+            break;
+        case "Villa Devoto":
+            return 200;
+            break;
+        case "Agronomía":
+            return 200;
+            break;
+        case "Villa del Parque":
+            return 200;
+            break;
+        case "Villa Santa Rita":
+            return 200;
+            break;
+        case "Villa General Mitre":
+            return 200;
+            break;
+        case "La Paternal":
+            return 200;
+            break;
+        case "Caballito":
+            return 200;
+            break;
+        case "Parque Chacabuco":
+            return 200;
+            break;
+        case "Villa Pueyrredón":
+            return 300;
+            break;
+        case "Villa Urquiza":
+            return 300;
+            break;
+        case "Parque Chas":
+            return 300;
+            break;
+        case "Villa Ortúzar":
+            return 300;
+            break;
+        case "Colegiales":
+            return 300;
+            break;
+        case "Chacarita":
+            return 300;
+            break;
+        case "Villa Crespo":
+            return 300;
+            break;
+        case "Almagro":
+            return 300;
+            break;
+        case "Boedo":
+            return 300;
+            break;
+        case "Balvanera":
+            return 300;
+            break;
+        case "San Cristóbal":
+            return 300;
+            break;
+        case "Parque Patricios":
+            return 300;
+            break;
+        case "Saavedra":
+            return 350;
+            break;
+        case "Coghlan":
+            return 350;
+            break;
+        case "Nuñez":
+            return 350;
+            break;
+        case "Belgrano":
+            return 350;
+            break;
+        case "Palermo":
+            return 350;
+            break;
+        case "":
+            return 350;
+            break;
+        case "Recoleta":
+            return 350;
+            break;
+        case "Retiro":
+            return 350;
+            break;
+        case "San Nicolás":
+            return 350;
+            break;
+        case "Monserrat":
+            return 350;
+            break;
+        case "Constitución":
+            return 350;
+            break;
+        case "San Telmo":
+            return 350;
+            break;
+        case "Puerto Madero":
+            return 350;
+            break;
+        default:
+            return "X";
+            break;
+    }
+}
+let costoEnvio = calcularEnvio(barrioIndicado);
+  alert("El costo de envío a " + barrioIndicado + " es de: $" + costoEnvio);
+});
+
+$("#btn1").click(() => {
+    $("#ipt1").trigger("change");
+});
+
+// falta calcular el precio
+
+// mostrar/ocultar imagen
+$("#btn").click(() => { 
+$("#div1").toggle("slow");
+});
+
+
+// css desde js
+$("#div1").css({"color": "black", 
+                "font-size": "40px", 
+                "borderLeft": "5px solid #ccc",
+                "height": "25%"
+            });
+$("#div2").css({"color": "black", 
+                "font-size": "40px", 
+                
+            });            
+$("#btn").css({"color": "red",
+                "font-size": "15px",
+                "cursor":"pointer",
+                "border":"3px solid pink",
+                
+});
+
+// // animacion
+// $(".animacion").animate({
+//     opacity:'0.6',
+//     'font-size':'2.5em'
+    
+// },
+// "slow");
