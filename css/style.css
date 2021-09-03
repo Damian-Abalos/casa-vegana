@@ -98,20 +98,13 @@ header nav{
   min-height: 96px;
 }
 
-#section-envio{
-  background-color: rgba(49, 49, 49, 0.712);
-
-}
 #envio{
-  width: 50%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: auto;
+  text-align: center;
 }
 
 #envio h2{
-  color: #ccc;
+  color: rgb(0, 0, 0);
+  width: 100%;
 }
 
 #envio img{

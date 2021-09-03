@@ -105,56 +105,15 @@ function addItemToShoppingCart(itemTitle, itemPrice, itemImage) {
   updateShoppingCartTotal();
 }
 
-function updateShoppingCartTotal() {
-  let total = 0;
-  const shoppingCartTotal = document.querySelector('.shoppingCartTotal');
 
-  const shoppingCartItems = document.querySelectorAll('.shoppingCartItem');
-
-  shoppingCartItems.forEach((shoppingCartItem) => {
-    const shoppingCartItemPriceElement = shoppingCartItem.querySelector(
-      '.shoppingCartItemPrice'
-    );
-    const shoppingCartItemPrice = Number(
-      shoppingCartItemPriceElement.textContent.replace('$', '')
-    );
-    const shoppingCartItemQuantityElement = shoppingCartItem.querySelector(
-      '.shoppingCartItemQuantity'
-    );
-    const shoppingCartItemQuantity = Number(
-      shoppingCartItemQuantityElement.value
-    );
-    total = total + shoppingCartItemPrice * shoppingCartItemQuantity;
-  });
-  shoppingCartTotal.innerHTML = `$${total.toFixed(2)}`;
-}
-
-function removeShoppingCartItem(event) {
-  const buttonClicked = event.target;
-  buttonClicked.closest('.shoppingCartItem').remove();
-  updateShoppingCartTotal();
-}
-
-function quantityChanged(event) {
-  const input = event.target;
-  input.value <= 0 ? (input.value = 1) : null;
-  updateShoppingCartTotal();
-}
-
-function comprarButtonClicked() {
-  shoppingCartItemsContainer.innerHTML = '';
-  updateShoppingCartTotal();
-}
 
 
 
 
 $("#envio").append(  
-  `<h2 class="animacion">Calcule el valor del envío (solo en capital)</h2>
-  <div id="div1"><img  src="img/mapa-envios.jpg" alt=""></div>
+  `<h3 class="animacion">Calcule el valor del envío (solo en capital)</h2>
   <select name="barrios" placeholder="seleccione su barrio" id="ipt1"></select>
-  <button id="btn1">Calcular</button>
-  <button id="btn">Mostrar / Ocultar <br>mapa</button>`
+  <button id="btn1">Calcular</button>`
   );  
 
   //JSON
@@ -172,9 +131,9 @@ $("#ipt1").ready(() => {
       }
       });
   });
-
+  var costoEnvio = 0
 $("#ipt1").change((e) => {
-  let barrioIndicado = barriosField.value;
+  var barrioIndicado = barriosField.value;
   function calcularEnvio(costo) {
     switch (costo) {
         case "Liniers":
@@ -189,13 +148,13 @@ $("#ipt1").change((e) => {
         case "Mataderos":
             return 100;
             break;
-        case "villa Real":
+        case "Villa Real":
             return 150;
             break;
         case "Monte Castro":
             return 150;
             break;
-        case "Velez Sarfield":
+        case "Vélez Sársfield":
             return 150;
             break;
         case "Floresta":
@@ -311,7 +270,7 @@ $("#ipt1").change((e) => {
             break;
     }
 }
-let costoEnvio = calcularEnvio(barrioIndicado);
+costoEnvio = calcularEnvio(barrioIndicado);
   alert("El costo de envío a " + barrioIndicado + " es de: $" + costoEnvio);
 });
 
@@ -319,12 +278,47 @@ $("#btn1").click(() => {
     $("#ipt1").trigger("change");
 });
 
-// falta calcular el precio
 
-// mostrar/ocultar imagen
-$("#btn").click(() => { 
-$("#div1").toggle("slow");
-});
+function updateShoppingCartTotal() {
+  let total = 0;
+  const shoppingCartTotal = document.querySelector('.shoppingCartTotal');
+
+  const shoppingCartItems = document.querySelectorAll('.shoppingCartItem');
+
+  shoppingCartItems.forEach((shoppingCartItem) => {
+    const shoppingCartItemPriceElement = shoppingCartItem.querySelector(
+      '.shoppingCartItemPrice'
+    );
+    const shoppingCartItemPrice = Number(
+      shoppingCartItemPriceElement.textContent.replace('$', '')
+    );
+    const shoppingCartItemQuantityElement = shoppingCartItem.querySelector(
+      '.shoppingCartItemQuantity'
+    );
+    const shoppingCartItemQuantity = Number(
+      shoppingCartItemQuantityElement.value
+    );
+    total = total + shoppingCartItemPrice * shoppingCartItemQuantity + costoEnvio;
+  });
+  shoppingCartTotal.innerHTML = `$${total.toFixed(2)}`;
+}
+
+function removeShoppingCartItem(event) {
+  const buttonClicked = event.target;
+  buttonClicked.closest('.shoppingCartItem').remove();
+  updateShoppingCartTotal();
+}
+
+function quantityChanged(event) {
+  const input = event.target;
+  input.value <= 0 ? (input.value = 1) : null;
+  updateShoppingCartTotal();
+}
+
+function comprarButtonClicked() {
+  shoppingCartItemsContainer.innerHTML = '';
+  updateShoppingCartTotal();
+}
 
 
 // css desde js
@@ -344,10 +338,3 @@ $("#btn").css({"color": "red",
                 
 });
 
-// // animacion
-// $(".animacion").animate({
-//     opacity:'0.6',
-//     'font-size':'2.5em'
-    
-// },
-// "slow");
