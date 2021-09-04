@@ -276,6 +276,7 @@ costoEnvio = calcularEnvio(barrioIndicado);
 
 $("#btn1").click(() => {
     $("#ipt1").trigger("change");
+    $(".precio-envio").append(costoEnvio)
 });
 
 
