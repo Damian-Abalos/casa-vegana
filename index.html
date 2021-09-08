@@ -15,117 +15,129 @@
     <header>
         <nav class="navbar navbar-light">
             <div id="div-nav" class="container-fluid">
-              <a class="navbar-brand" href="#">
-                <img src="img/casa-vegana.png" alt="" class="d-inline-block">
-              </a>
+                <a class="navbar-brand" href="#">
+                    <img src="img/casa-vegana.png" alt="" class="d-inline-block">
+                </a>
             </div>
-          </nav>
+        </nav>
     </header>
 
     <!-- Tienda -->
     <section class="store">
-        <h1 class="text-center h1">Productos</h1>
+        <h1 class="text-center h1">Tienda</h1>
+        <div class="dropdown filtros">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                data-bs-toggle="dropdown" aria-expanded="true">
+                Productos
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" id="allProducts" onclick="filtrarTodosLosProductos()">Todos los productos</a></li>
+                <li><a class="dropdown-item" id="toques" onclick="filtrarToques()">Toques</a></li>
+                <li><a class="dropdown-item" id="pizzas" onclick="filtrarPizzas()">Pizzas</a></li>
+                <li><a class="dropdown-item" id="medallones" onclick="filtrarMedallones()">Medallones</a></li>
+                <li><a class="dropdown-item" id="postres" onclick="filtrarPostres()">Postres</a></li>
+            </ul>
+        </div>
         <div class="contenedor">
             <div id="items" class="row">
-           
+
             </div>
         </div>
     </section>
     <section id="section-envio">
-        
+
     </section>
-    
+
 
     <!-- Carrito -->
     <section class="shopping-cart">
         <div id="envio"></div>
         <div class="container">
             <h2 class="text-center">CARRITO</h1>
-            <hr>
-            <div class="row">
-                <div class="col-6">
-                    <div class="shopping-cart-header">
-                        <h6>Producto</h6>
+                <hr>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="shopping-cart-header">
+                            <h6>Producto</h6>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="shopping-cart-header">
+                            <h6 class="text-truncate">Precio</h6>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="shopping-cart-header">
+                            <h6>Cantidad</h6>
+                        </div>
                     </div>
                 </div>
-                <div class="col-2">
-                    <div class="shopping-cart-header">
-                        <h6 class="text-truncate">Precio</h6>
+                <!-- Productos del carrito -->
+                <div class="shopping-cart-items shoppingCartItemsContainer">
+                </div>
+
+                <!-- Total -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="d-flex">
+                            <p class="mb-0">Envío</p>
+                            <p class="ml-4 precio-envio">$</p>
+                        </div>
+                        <div class="shopping-cart-total d-flex align-items-center">
+                            <p class="mb-0">Total</p>
+                            <p class="ml-4 mb-0 shoppingCartTotal">$0</p>
+                            <div class="toast ml-auto bg-info" role="alert" aria-live="assertive" aria-atomic="true"
+                                data-delay="2000">
+                                <div class="toast-header">
+                                    <span>✅</span>
+                                    <strong class="mr-auto ml-1 text-secondary">Elemento en el carrito</strong>
+                                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast"
+                                        aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="toast-body text-white">
+                                    Se aumentó correctamente la cantidad
+                                </div>
+                            </div>
+                            <button class="btn btn-success ml-auto comprarButton" type="button" data-toggle="modal"
+                                data-target="#comprarModal">Comprar</button>
+                        </div>
                     </div>
                 </div>
-                <div class="col-4">
-                    <div class="shopping-cart-header">
-                        <h6>Cantidad</h6>
-                    </div>
-                </div>
-            </div>
-            <!-- Productos del carrito -->
-            <div class="shopping-cart-items shoppingCartItemsContainer">
-            </div>
-            
-            <!-- Total -->
-            <div class="row">
-                <div class="col-12">
-                    <div class="d-flex">
-                        <p class="mb-0">Envío</p>
-                        <p class="ml-4 precio-envio">$</p>
-                    </div>
-                    <div class="shopping-cart-total d-flex align-items-center">
-                        <p class="mb-0">Total</p>
-                        <p class="ml-4 mb-0 shoppingCartTotal">$0</p>
-                        <div class="toast ml-auto bg-info" role="alert" aria-live="assertive" aria-atomic="true"
-                            data-delay="2000">
-                            <div class="toast-header">
-                                <span>✅</span>
-                                <strong class="mr-auto ml-1 text-secondary">Elemento en el carrito</strong>
-                                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+
+                <!-- Modal -->
+                <div class="modal fade" id="comprarModal" tabindex="-1" aria-labelledby="comprarModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="comprarModalLabel">Gracias por su compra</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div class="toast-body text-white">
-                                Se aumentó correctamente la cantidad
+                            <div class="modal-body">
+                                <p>Pronto recibirá su pedido</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                             </div>
                         </div>
-                        <button class="btn btn-success ml-auto comprarButton" type="button" data-toggle="modal"
-                            data-target="#comprarModal">Comprar</button>
                     </div>
                 </div>
-            </div>
-
-            <!-- Modal -->
-            <div class="modal fade" id="comprarModal" tabindex="-1" aria-labelledby="comprarModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="comprarModalLabel">Gracias por su compra</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <p>Pronto recibirá su pedido</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
-    
+
     <!-- SCRIPTS -->
-    <script
-  src="https://code.jquery.com/jquery-3.6.0.js"
-  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-  crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
         integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
         crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
 
     <script src="js/tienda.js"></script>

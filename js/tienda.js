@@ -1,16 +1,24 @@
 const productos = [
-    { id: 1, nombre: "TOQUES DE GARBANZOS", precio: 370 },
-    { id: 2, nombre: "TOQUES DE LENTEJAS", precio: 370 },
-    { id: 3, nombre: "PIZZA FUGAZZETTA", precio: 800 },
-    { id: 4, nombre: "PIZZA NAPOLITANA", precio: 800 },
-    { id: 5, nombre: "PIZZA PORTOBELLO", precio: 930 },
-    { id: 6, nombre: "MEDALLONES ADUKI REMOLACHA ", precio: 300 },
-    { id: 7, nombre: "MEDALLONES QUINOA MEDITERRANEA", precio: 300 },
-    { id: 8, nombre: "MEDALLONES GREEN MOON", precio: 300 },
-    { id: 9, nombre: "MOUSSE DE CHOCOLATE", precio: 350 },
-    { id: 10, nombre: "VOLCAN DE CHOCOLATE", precio: 350 },
+    { id: 1, nombre: "TOQUES DE GARBANZOS", sabor:"salado", tipo:"toque", precio: 370 },
+    { id: 2, nombre: "TOQUES DE LENTEJAS", sabor:"salado", tipo:"toque", precio: 370 },
+    { id: 3, nombre: "PIZZA FUGAZZETTA", sabor:"salado", tipo:"pizza", precio: 800 },
+    { id: 4, nombre: "PIZZA NAPOLITANA", sabor:"salado", tipo:"pizza", precio: 800 },
+    { id: 5, nombre: "PIZZA PORTOBELLO", sabor:"salado", tipo:"pizza", precio: 930 },
+    { id: 6, nombre: "MEDALLONES ADUKI REMOLACHA ", sabor:"salado", tipo:"medallon", precio: 300 },
+    { id: 7, nombre: "MEDALLONES QUINOA MEDITERRANEA", sabor:"salado", tipo:"medallon", precio: 300 },
+    { id: 8, nombre: "MEDALLONES GREEN MOON", sabor:"salado", tipo:"medallon", precio: 300 },
+    { id: 9, nombre: "MOUSSE DE CHOCOLATE", sabor:"dulce", tipo:"postre", precio: 350 },
+    { id: 10, nombre: "VOLCAN DE CHOCOLATE", sabor:"dulce", tipo:"postre", precio: 350 },
     
 ];
+
+const toques = productos.filter(producto => producto.tipo == "toque");
+const pizzas = productos.filter(producto => producto.tipo == "pizza");
+const medallones = productos.filter(producto => producto.tipo == "medallon");
+const postres = productos.filter(producto => producto.tipo == "postre");
+
+const dulces = productos.filter(producto => producto.sabor == "dulce");
+const salados = productos.filter(producto => producto.sabor == "salado");
 
 for (const producto of productos) {
   $("#items").append(  
@@ -19,13 +27,107 @@ for (const producto of productos) {
   <h3 class="item-title">${producto.nombre}</h3>  
   <div class="divImg"><img class="item-image" src="img/${producto.id}.jpg"></div>
   <div class="item-details">
-  <h4 class="item-price">$${producto.precio}</h4>
+  <h4 class="item-price">$ ${producto.precio}</h4>
   <button class="item-button btn btn-primary addToCart">AÑADIR AL CARRITO</button>
   </div>
   </div>
   </div>`
   );    
 };
+
+
+
+// function filtrarToques(){
+   
+    
+// };
+
+function filtrarTodosLosProductos(){
+    $(".card-shopp").remove();
+    for (const producto of productos) {
+        $("#items").append(  
+        `<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 card-shopp">
+        <div class="item shadow mb-4">
+        <h3 class="item-title">${producto.nombre}</h3>  
+        <div class="divImg"><img class="item-image" src="img/${producto.id}.jpg"></div>
+        <div class="item-details">
+        <h4 class="item-price">$ ${producto.precio}</h4>
+        <button class="item-button btn btn-primary addToCart">AÑADIR AL CARRITO</button>
+        </div>
+        </div>
+        </div>`
+        );    
+      };      
+}
+function filtrarToques(){
+    $(".card-shopp").remove();
+    for (const producto of toques) {
+        $("#items").append(  
+        `<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 card-shopp">
+        <div class="item shadow mb-4">
+        <h3 class="item-title">${producto.nombre}</h3>  
+        <div class="divImg"><img class="item-image" src="img/${producto.id}.jpg"></div>
+        <div class="item-details">
+        <h4 class="item-price">$ ${producto.precio}</h4>
+        <button class="item-button btn btn-primary addToCart">AÑADIR AL CARRITO</button>
+        </div>
+        </div>
+        </div>`
+        );    
+      };   
+};
+function filtrarPizzas(){
+    $(".card-shopp").remove();
+    for (const producto of pizzas) {
+        $("#items").append(  
+        `<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 card-shopp">
+        <div class="item shadow mb-4">
+        <h3 class="item-title">${producto.nombre}</h3>  
+        <div class="divImg"><img class="item-image" src="img/${producto.id}.jpg"></div>
+        <div class="item-details">
+        <h4 class="item-price">$ ${producto.precio}</h4>
+        <button class="item-button btn btn-primary addToCart">AÑADIR AL CARRITO</button>
+        </div>
+        </div>
+        </div>`
+        );    
+      };   
+};
+function filtrarMedallones(){
+    $(".card-shopp").remove();
+    for (const producto of medallones) {
+        $("#items").append(  
+        `<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 card-shopp">
+        <div class="item shadow mb-4">
+        <h3 class="item-title">${producto.nombre}</h3>  
+        <div class="divImg"><img class="item-image" src="img/${producto.id}.jpg"></div>
+        <div class="item-details">
+        <h4 class="item-price">$ ${producto.precio}</h4>
+        <button class="item-button btn btn-primary addToCart">AÑADIR AL CARRITO</button>
+        </div>
+        </div>
+        </div>`
+        );    
+      };   
+};
+function filtrarPostres(){
+    $(".card-shopp").remove();
+    for (const producto of postres) {
+        $("#items").append(  
+        `<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 card-shopp">
+        <div class="item shadow mb-4">
+        <h3 class="item-title">${producto.nombre}</h3>  
+        <div class="divImg"><img class="item-image" src="img/${producto.id}.jpg"></div>
+        <div class="item-details">
+        <h4 class="item-price">$ ${producto.precio}</h4>
+        <button class="item-button btn btn-primary addToCart">AÑADIR AL CARRITO</button>
+        </div>
+        </div>
+        </div>`
+        );    
+      };   
+};
+
 
 const addToShoppingCartButtons = document.querySelectorAll('.addToCart');
 addToShoppingCartButtons.forEach((addToCartButton) => {
@@ -111,7 +213,7 @@ function addItemToShoppingCart(itemTitle, itemPrice, itemImage) {
 
 
 $("#envio").append(  
-  `<h3 class="animacion">Calcule el valor del envío (solo en capital)</h2>
+  `<h3 class="animacion">Calcule el valor del envío (solo CABA)</h2>
   <select name="barrios" placeholder="seleccione su barrio" id="ipt1"></select>
   <button id="btn1">Calcular</button>`
   );  
@@ -323,19 +425,19 @@ function comprarButtonClicked() {
 
 
 // css desde js
-$("#div1").css({"color": "black", 
-                "font-size": "40px", 
-                "borderLeft": "5px solid #ccc",
-                "height": "25%"
-            });
-$("#div2").css({"color": "black", 
-                "font-size": "40px", 
+// $("#div1").css({"color": "black", 
+//                 "font-size": "40px", 
+//                 "borderLeft": "5px solid #ccc",
+//                 "height": "25%"
+//             });
+// $("#div2").css({"color": "black", 
+//                 "font-size": "40px", 
                 
-            });            
-$("#btn").css({"color": "red",
-                "font-size": "15px",
-                "cursor":"pointer",
-                "border":"3px solid pink",
+//             });            
+// $("#btn").css({"color": "red",
+//                 "font-size": "15px",
+//                 "cursor":"pointer",
+//                 "border":"3px solid pink",
                 
-});
+// });
 
