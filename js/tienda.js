@@ -233,10 +233,6 @@ function addItemToShoppingCart(itemTitle, itemPrice, itemImage) {
 }
 
 
-
-
-
-
 $("#envio").append(  
   `<h3 class="animacion">Calcule el valor del envío (solo CABA)</h2>
   <select name="barrios" placeholder="seleccione su barrio" id="ipt1"></select>
@@ -259,7 +255,7 @@ $("#ipt1").ready(() => {
       });
   });
   var costoEnvio = 0
-$("#ipt1").change((e) => {
+$("#ipt1").change(() => {
   var barrioIndicado = barriosField.value;
   function calcularEnvio(costo) {
     switch (costo) {
@@ -399,11 +395,20 @@ $("#ipt1").change((e) => {
 }
 costoEnvio = calcularEnvio(barrioIndicado);
   alert("El costo de envío a " + barrioIndicado + " es de: $" + costoEnvio);
+  updateEnvio();
+  updateShoppingCartTotal();
+  
 });
-
+function updateEnvio(){
+    $(".precio-envio").remove();
+    $(".precio-envio-div").append(`<p class="precio-envio">$${costoEnvio}</p>`);
+}
 $("#btn1").click(() => {
     $("#ipt1").trigger("change");
-    $(".precio-envio").append(costoEnvio)
+    // $(".precio-envio").remove();
+    // $(".precio-envio").append("$" + costoEnvio);
+    updateEnvio();
+    updateShoppingCartTotal();
 });
 
 
@@ -448,21 +453,4 @@ function comprarButtonClicked() {
   updateShoppingCartTotal();
 }
 
-
-// css desde js
-// $("#div1").css({"color": "black", 
-//                 "font-size": "40px", 
-//                 "borderLeft": "5px solid #ccc",
-//                 "height": "25%"
-//             });
-// $("#div2").css({"color": "black", 
-//                 "font-size": "40px", 
-                
-//             });            
-// $("#btn").css({"color": "red",
-//                 "font-size": "15px",
-//                 "cursor":"pointer",
-//                 "border":"3px solid pink",
-                
-// });
 
