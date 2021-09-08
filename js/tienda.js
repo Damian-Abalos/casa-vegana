@@ -430,9 +430,10 @@ function updateShoppingCartTotal() {
     const shoppingCartItemQuantity = Number(
       shoppingCartItemQuantityElement.value
     );
-    total = total + shoppingCartItemPrice * shoppingCartItemQuantity + costoEnvio;
+    total = total + shoppingCartItemPrice * shoppingCartItemQuantity;
+    totalFinal = total + costoEnvio;
   });
-  shoppingCartTotal.innerHTML = `$${total.toFixed(2)}`;
+  shoppingCartTotal.innerHTML = `$${totalFinal.toFixed(2)}`;
 }
 
 function removeShoppingCartItem(event) {

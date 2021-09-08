@@ -20,6 +20,10 @@ header nav{
   background-image: linear-gradient(#e8ffeb, #f4fff3);
 }
 
+.dropdown-item{
+  cursor: pointer;
+}
+
 .filtros{
   display: flex;
   justify-content: center;
