@@ -235,8 +235,7 @@ function addItemToShoppingCart(itemTitle, itemPrice, itemImage) {
 
 $("#envio").append(  
   `<h3 class="animacion">Calcule el valor del envío (solo CABA)</h2>
-  <select name="barrios" placeholder="seleccione su barrio" id="ipt1"></select>
-  <button id="btn1">Calcular</button>`
+  <select name="barrios" placeholder="seleccione su barrio" id="ipt1"></select>`
   );  
 
   //JSON
@@ -403,13 +402,13 @@ function updateEnvio(){
     $(".precio-envio").remove();
     $(".precio-envio-div").append(`<p class="precio-envio">$${costoEnvio}</p>`);
 }
-$("#btn1").click(() => {
-    $("#ipt1").trigger("change");
-    // $(".precio-envio").remove();
-    // $(".precio-envio").append("$" + costoEnvio);
-    updateEnvio();
-    updateShoppingCartTotal();
-});
+// $("#btn1").click(() => {
+//     $("#ipt1").trigger("change");
+//     // $(".precio-envio").remove();
+//     // $(".precio-envio").append("$" + costoEnvio);
+//     updateEnvio();
+//     updateShoppingCartTotal();
+// });
 
 
 function updateShoppingCartTotal() {
