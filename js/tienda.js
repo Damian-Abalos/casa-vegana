@@ -12,17 +12,17 @@ const productos = [
     
 ];
 
-const toques = productos.filter(producto => producto.tipo == "toque");
-const pizzas = productos.filter(producto => producto.tipo == "pizza");
-const medallones = productos.filter(producto => producto.tipo == "medallon");
-const postres = productos.filter(producto => producto.tipo == "postre");
+// const toques = productos.filter(producto => producto.tipo == "toque");
+// const pizzas = productos.filter(producto => producto.tipo == "pizza");
+// const medallones = productos.filter(producto => producto.tipo == "medallon");
+// const postres = productos.filter(producto => producto.tipo == "postre");
 
-const dulces = productos.filter(producto => producto.sabor == "dulce");
-const salados = productos.filter(producto => producto.sabor == "salado");
+// const dulces = productos.filter(producto => producto.sabor == "dulce");
+// const salados = productos.filter(producto => producto.sabor == "salado");
 
 for (const producto of productos) {
   $("#items").append(  
-  `<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 card-shopp">
+  `<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 card-shopp ${producto.tipo}">
   <div class="item shadow mb-4">
   <h3 class="item-title">${producto.nombre}</h3>  
   <div class="divImg"><img class="item-image" src="img/${producto.id}.jpg"></div>
@@ -36,97 +36,122 @@ for (const producto of productos) {
 };
 
 
-
-// function filtrarToques(){
-   
-    
-// };
-
 function filtrarTodosLosProductos(){
-    $(".card-shopp").remove();
-    for (const producto of productos) {
-        $("#items").append(  
-        `<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 card-shopp">
-        <div class="item shadow mb-4">
-        <h3 class="item-title">${producto.nombre}</h3>  
-        <div class="divImg"><img class="item-image" src="img/${producto.id}.jpg"></div>
-        <div class="item-details">
-        <h4 class="item-price">$ ${producto.precio}</h4>
-        <button class="item-button btn btn-primary addToCart">AÑADIR AL CARRITO</button>
-        </div>
-        </div>
-        </div>`
-        );    
-      };      
-}
+    $(".toque").css({"display": "block"});
+    $(".pizza").css({"display": "block"});
+    $(".medallon").css({"display": "block"});
+    $(".postre").css({"display": "block"});
+};
 function filtrarToques(){
-    $(".card-shopp").remove();
-    for (const producto of toques) {
-        $("#items").append(  
-        `<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 card-shopp">
-        <div class="item shadow mb-4">
-        <h3 class="item-title">${producto.nombre}</h3>  
-        <div class="divImg"><img class="item-image" src="img/${producto.id}.jpg"></div>
-        <div class="item-details">
-        <h4 class="item-price">$ ${producto.precio}</h4>
-        <button class="item-button btn btn-primary addToCart">AÑADIR AL CARRITO</button>
-        </div>
-        </div>
-        </div>`
-        );    
-      };   
+    $(".toque").css({"display": "block"});
+    $(".pizza").css({"display": "none"});
+    $(".medallon").css({"display": "none"});
+    $(".postre").css({"display": "none"});
 };
 function filtrarPizzas(){
-    $(".card-shopp").remove();
-    for (const producto of pizzas) {
-        $("#items").append(  
-        `<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 card-shopp">
-        <div class="item shadow mb-4">
-        <h3 class="item-title">${producto.nombre}</h3>  
-        <div class="divImg"><img class="item-image" src="img/${producto.id}.jpg"></div>
-        <div class="item-details">
-        <h4 class="item-price">$ ${producto.precio}</h4>
-        <button class="item-button btn btn-primary addToCart">AÑADIR AL CARRITO</button>
-        </div>
-        </div>
-        </div>`
-        );    
-      };   
+    $(".toque").css({"display": "none"});
+    $(".pizza").css({"display": "block"});
+    $(".medallon").css({"display": "none"});
+    $(".postre").css({"display": "none"});
 };
 function filtrarMedallones(){
-    $(".card-shopp").remove();
-    for (const producto of medallones) {
-        $("#items").append(  
-        `<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 card-shopp">
-        <div class="item shadow mb-4">
-        <h3 class="item-title">${producto.nombre}</h3>  
-        <div class="divImg"><img class="item-image" src="img/${producto.id}.jpg"></div>
-        <div class="item-details">
-        <h4 class="item-price">$ ${producto.precio}</h4>
-        <button class="item-button btn btn-primary addToCart">AÑADIR AL CARRITO</button>
-        </div>
-        </div>
-        </div>`
-        );    
-      };   
+    $(".toque").css({"display": "none"});
+    $(".pizza").css({"display": "none"});
+    $(".medallon").css({"display": "block"});
+    $(".postre").css({"display": "none"});
 };
 function filtrarPostres(){
-    $(".card-shopp").remove();
-    for (const producto of postres) {
-        $("#items").append(  
-        `<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 card-shopp">
-        <div class="item shadow mb-4">
-        <h3 class="item-title">${producto.nombre}</h3>  
-        <div class="divImg"><img class="item-image" src="img/${producto.id}.jpg"></div>
-        <div class="item-details">
-        <h4 class="item-price">$ ${producto.precio}</h4>
-        <button class="item-button btn btn-primary addToCart">AÑADIR AL CARRITO</button>
-        </div>
-        </div>
-        </div>`
-        );    
-      };   
+    $(".toque").css({"display": "none"});
+    $(".pizza").css({"display": "none"});
+    $(".medallon").css({"display": "none"});
+    $(".postre").css({"display": "block"});
 };
+
+// function filtrarTodosLosProductos(){
+//     $(".card-shopp").remove();
+//     for (const producto of productos) {
+//         $("#items").append(  
+//         `<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 card-shopp">
+//         <div class="item shadow mb-4">
+//         <h3 class="item-title">${producto.nombre}</h3>  
+//         <div class="divImg"><img class="item-image" src="img/${producto.id}.jpg"></div>
+//         <div class="item-details">
+//         <h4 class="item-price">$ ${producto.precio}</h4>
+//         <button class="item-button btn btn-primary addToCart">AÑADIR AL CARRITO</button>
+//         </div>
+//         </div>
+//         </div>`
+//         );    
+//       };      
+// }
+// function filtrarToques(){
+//     $(".card-shopp").remove();
+//     for (const producto of toques) {
+//         $("#items").append(  
+//         `<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 card-shopp">
+//         <div class="item shadow mb-4">
+//         <h3 class="item-title">${producto.nombre}</h3>  
+//         <div class="divImg"><img class="item-image" src="img/${producto.id}.jpg"></div>
+//         <div class="item-details">
+//         <h4 class="item-price">$ ${producto.precio}</h4>
+//         <button class="item-button btn btn-primary addToCart">AÑADIR AL CARRITO</button>
+//         </div>
+//         </div>
+//         </div>`
+//         );    
+//       };   
+// };
+// function filtrarPizzas(){
+//     $(".card-shopp").remove();
+//     for (const producto of pizzas) {
+//         $("#items").append(  
+//         `<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 card-shopp">
+//         <div class="item shadow mb-4">
+//         <h3 class="item-title">${producto.nombre}</h3>  
+//         <div class="divImg"><img class="item-image" src="img/${producto.id}.jpg"></div>
+//         <div class="item-details">
+//         <h4 class="item-price">$ ${producto.precio}</h4>
+//         <button class="item-button btn btn-primary addToCart">AÑADIR AL CARRITO</button>
+//         </div>
+//         </div>
+//         </div>`
+//         );    
+//       };   
+// };
+// function filtrarMedallones(){
+//     $(".card-shopp").remove();
+//     for (const producto of medallones) {
+//         $("#items").append(  
+//         `<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 card-shopp">
+//         <div class="item shadow mb-4">
+//         <h3 class="item-title">${producto.nombre}</h3>  
+//         <div class="divImg"><img class="item-image" src="img/${producto.id}.jpg"></div>
+//         <div class="item-details">
+//         <h4 class="item-price">$ ${producto.precio}</h4>
+//         <button class="item-button btn btn-primary addToCart">AÑADIR AL CARRITO</button>
+//         </div>
+//         </div>
+//         </div>`
+//         );    
+//       };   
+// };
+// function filtrarPostres(){
+//     $(".card-shopp").remove();
+//     for (const producto of postres) {
+//         $("#items").append(  
+//         `<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 card-shopp">
+//         <div class="item shadow mb-4">
+//         <h3 class="item-title">${producto.nombre}</h3>  
+//         <div class="divImg"><img class="item-image" src="img/${producto.id}.jpg"></div>
+//         <div class="item-details">
+//         <h4 class="item-price">$ ${producto.precio}</h4>
+//         <button class="item-button btn btn-primary addToCart">AÑADIR AL CARRITO</button>
+//         </div>
+//         </div>
+//         </div>`
+//         );    
+//       };   
+// };
 
 
 const addToShoppingCartButtons = document.querySelectorAll('.addToCart');
