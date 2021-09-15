@@ -27,7 +27,6 @@ for (const producto of productos) {
     );
 };
 
-
 function filtrarTodosLosProductos() {
     $(".toque").css({ "display": "block" });
     $(".pizza").css({ "display": "block" });
@@ -60,13 +59,12 @@ function filtrarPostres() {
 };
 
 
-
 const addToShoppingCartButtons = document.querySelectorAll('.addToCart');
 addToShoppingCartButtons.forEach((addToCartButton) => {
     addToCartButton.addEventListener('click', addToCartClicked);
 });
 
-const comprarButton = document.querySelector('.comprarButton');
+const comprarButton = document.querySelector('#btn-enviar-modal');
 comprarButton.addEventListener('click', comprarButtonClicked);
 
 const shoppingCartItemsContainer = document.querySelector(
@@ -108,7 +106,7 @@ function addItemToShoppingCart(itemTitle, itemPrice, itemImage) {
 
     const shoppingCartRow = document.createElement('div');
     const shoppingCartContent = `
-  <div class="row shoppingCartItem">
+    <div class="row shoppingCartItem">
         <div class="col-6">
             <div class="shopping-cart-item d-flex align-items-center h-100 border-bottom pb-2 pt-3">
                 <img src=${itemImage} class="shopping-cart-image">
@@ -143,27 +141,13 @@ function addItemToShoppingCart(itemTitle, itemPrice, itemImage) {
     updateShoppingCartTotal();
 }
 
-
 $("#envio").prepend(
     `<h3 class="animacion">Calcule el valor del envío (solo CABA)</h2>
   <select name="barrios" placeholder="seleccione su barrio" id="ipt1"></select>`
 );
 
-
 //JSON
 var barriosField = document.querySelector('select[name = barrios]');
-// const URLJSON = "barrios.json"
-
-// $("#ipt1").ready(() => {
-//     $.getJSON(URLJSON, function (respuesta, estado) {
-//         if (estado === "success") {
-//             let misDatos = respuesta;
-//             for (const dato of misDatos) {
-//                 $("#ipt1").append(`<option>${dato.name}<option>`)
-//             }
-//         }
-//     });
-// });
 
 fetch('barrios.json')
 .then(response => response.json())
@@ -327,14 +311,6 @@ function updateEnvio() {
     $(".precio-envio").remove();
     $(".precio-envio-div").append(`<p class="precio-envio">$${costoEnvio}</p>`);
 }
-// $("#btn1").click(() => {
-//     $("#ipt1").trigger("change");
-//     // $(".precio-envio").remove();
-//     // $(".precio-envio").append("$" + costoEnvio);
-//     updateEnvio();
-//     updateShoppingCartTotal();
-// });
-
 
 function updateShoppingCartTotal() {
     let total = 0;
