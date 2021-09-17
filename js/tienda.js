@@ -1,3 +1,4 @@
+//ARRAY DE PRODUCTOS
 const productos = [
     { id: 1, nombre: "TOQUES DE GARBANZOS", sabor: "salado", tipo: "toque", precio: 370 },
     { id: 2, nombre: "TOQUES DE LENTEJAS", sabor: "salado", tipo: "toque", precio: 370 },
@@ -9,9 +10,9 @@ const productos = [
     { id: 8, nombre: "MEDALLONES GREEN MOON", sabor: "salado", tipo: "medallon", precio: 300 },
     { id: 9, nombre: "MOUSSE DE CHOCOLATE", sabor: "dulce", tipo: "postre", precio: 350 },
     { id: 10, nombre: "VOLCAN DE CHOCOLATE", sabor: "dulce", tipo: "postre", precio: 350 },
-
 ];
 
+//INSERTAR PRODUCTOS EN EL HTML
 for (const producto of productos) {
     $("#items").append(
         `<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 card-shopp ${producto.tipo}">
@@ -27,6 +28,7 @@ for (const producto of productos) {
     );
 };
 
+//FILTROS DE PRODUCTOS
 function filtrarTodosLosProductos() {
     $(".toque").css({ "display": "block" });
     $(".pizza").css({ "display": "block" });
@@ -58,23 +60,24 @@ function filtrarPostres() {
     $(".postre").css({ "display": "block" });
 };
 
-
+//INDICAR EVENTOS A BOTONES "AÑADIR AL CARRITO" Y "COMPRAR"
 const addToShoppingCartButtons = document.querySelectorAll('.addToCart');
 addToShoppingCartButtons.forEach((addToCartButton) => {
     addToCartButton.addEventListener('click', addToCartClicked);
 });
-
 const comprarButton = document.querySelector('#btn-enviar-modal');
 comprarButton.addEventListener('click', comprarButtonClicked);
 
+//CONTENEDOR CARRITO
 const shoppingCartItemsContainer = document.querySelector(
     '.shoppingCartItemsContainer'
 );
-
+//DIV PRECIO ENVIO
 const precioEnvioContainer = document.querySelector(
     '.precio-envio-div'
 );
 
+//FUNCIONES PARA AÑADIR PRODUCTOS AL CARRITO
 function addToCartClicked(event) {
     const button = event.target;
     const item = button.closest('.item');
@@ -85,7 +88,6 @@ function addToCartClicked(event) {
 
     addItemToShoppingCart(itemTitle, itemPrice, itemImage);
 }
-
 function addItemToShoppingCart(itemTitle, itemPrice, itemImage) {
     const elementsTitle = shoppingCartItemsContainer.getElementsByClassName(
         'shoppingCartItemTitle'
@@ -103,7 +105,7 @@ function addItemToShoppingCart(itemTitle, itemPrice, itemImage) {
             return;
         }
     }
-
+    //INSERTAR LOS PRODUCTOS AÑADIDOS AL CARRITO, EN EL CARRITO
     const shoppingCartRow = document.createElement('div');
     const shoppingCartContent = `
     <div class="row shoppingCartItem">
@@ -130,10 +132,11 @@ function addItemToShoppingCart(itemTitle, itemPrice, itemImage) {
     shoppingCartRow.innerHTML = shoppingCartContent;
     shoppingCartItemsContainer.append(shoppingCartRow);
 
+    //EVENTO ELIMINAR PRODUCTO DEL CARRITO
     shoppingCartRow
         .querySelector('.buttonDelete')
         .addEventListener('click', removeShoppingCartItem);
-
+    //EVENTO ACTUALIZAR CANTIDAD 
     shoppingCartRow
         .querySelector('.shoppingCartItemQuantity')
         .addEventListener('change', quantityChanged);
@@ -141,26 +144,27 @@ function addItemToShoppingCart(itemTitle, itemPrice, itemImage) {
     updateShoppingCartTotal();
 }
 
+//INSERTAR CALCULADOR DE VALOR DE ENVIO EN EL HTML
 $("#envio").prepend(
-    `<h3 class="animacion">Calcule el valor del envío (solo CABA)</h2>
+    `<h3">Calcule el valor del envío (solo CABA)</h2>
   <select name="barrios" placeholder="seleccione su barrio" id="ipt1"></select>`
 );
 
-//JSON
+//JSON PARA INSERTAR BARRIOS EN EL SELECT
 var barriosField = document.querySelector('select[name = barrios]');
 
 fetch('barrios.json')
-.then(response => response.json())
-.then(function(data){
-    for(var i = 0; i <data.length; i++){
-        var opt = document.createElement('option');
-        opt.value = i;
-        opt.innerHTML = data[i].name;
-        barriosField.appendChild(opt);
-    }
-})
+    .then(response => response.json())
+    .then(function (data) {
+        for (var i = 0; i < data.length; i++) {
+            var opt = document.createElement('option');
+            opt.value = i;
+            opt.innerHTML = data[i].name;
+            barriosField.appendChild(opt);
+        }
+    })
 
-
+//CALCULADOR DE VALOR DE ENVIO
 var costoEnvio = 0
 $("#ipt1").change(() => {
     var valor = barriosField.value;
@@ -307,11 +311,13 @@ $("#ipt1").change(() => {
     updateShoppingCartTotal();
 
 });
+
+//FUNCION PARA ACTUALIZAR PRECIO DE ENVIO
 function updateEnvio() {
     $(".precio-envio").remove();
     $(".precio-envio-div").append(`<p class="precio-envio">$${costoEnvio}</p>`);
 }
-
+//FUNCION PARA ACTUALIZAR PRECIO TOTAL 
 function updateShoppingCartTotal() {
     let total = 0;
     const shoppingCartTotal = document.querySelector('.shoppingCartTotal');
@@ -337,18 +343,19 @@ function updateShoppingCartTotal() {
     shoppingCartTotal.innerHTML = `$${totalFinal.toFixed(2)}`;
 }
 
+//REMOVER PRODUCTO DEL CARRITO
 function removeShoppingCartItem(event) {
     const buttonClicked = event.target;
     buttonClicked.closest('.shoppingCartItem').remove();
     updateShoppingCartTotal();
 }
-
+//ACTUALIZAR CANTIDAD
 function quantityChanged(event) {
     const input = event.target;
     input.value <= 0 ? (input.value = 1) : null;
     updateShoppingCartTotal();
 }
-
+//ACTUALIZAR ENVIO Y TOTAL A 0
 function comprarButtonClicked() {
     shoppingCartItemsContainer.innerHTML = '';
     precioEnvioContainer.innerHTML = '';
@@ -357,6 +364,55 @@ function comprarButtonClicked() {
     updateShoppingCartTotal();
 }
 
-$('#btn-enviar-modal').click(function(){
-    alert("Gracias por su compra, pronto nos pondremos en contacto para coordinar la entrega")
+//FORMULARIO MODAL
+
+// let compra = [];
+// const productosDelCarrito = document.getElementsByClassName('shopping-cart-item-title');
+// for (producto of productosDelCarrito){
+//     compra.push(producto.innerText)
+// }
+// productosDelCarrito.forEach(() => {
+//     compra.push(productosDelCarrito.value)
+// });
+
+let nombre = $('#nombre');
+let telefono = $("#telefono");
+let direccion = $("#direccion");
+
+let datosPersona = {
+    name: "",
+    phone: "",
+    adress: "",
+    products: ""
+}
+//GUARDAR LOS DATOS INGRESADOS EN LOCAL STORAGE
+const guardoDatosCargados = () => {
+    datosPersona.name = nombre.val();
+    datosPersona.phone = telefono.val();
+    datosPersona.adress = direccion.val();
+    let compra = [];
+    const productosDelCarrito = document.getElementsByClassName('shopping-cart-item-title');
+    // productosDelCarrito.forEach((productoDelCarrito)=>{
+    //     compra.push(productoDelCarrito.innerHTML);
+    // });
+    for (product of productosDelCarrito){
+        compra.push(product.innerText);
+    };
+    // const addToShoppingCartButtons = document.querySelectorAll('.addToCart');
+    // addToShoppingCartButtons.forEach((addToCartButton) => {
+    //     addToCartButton.addEventListener('click', addToCartClicked);
+    // });
+    datosPersona.products = compra;
+    if (datosPersona.name != "" && datosPersona.phone != "" && datosPersona.adress != "") {
+        localStorage.datosPersona = JSON.stringify(datosPersona);
+        localStorage.compra = JSON.stringify(compra);
+
+        alert(`${datosPersona.name} gracias por tu compra, pronto nos pondremos en contacto al ${datosPersona.phone} para coordinar la entrega en ${datosPersona.adress} `)
+    } else {
+        alert('Ingese todos los datos')
+    }
+}
+
+$('#btn-enviar-modal').click(() => {
+    guardoDatosCargados();
 })
